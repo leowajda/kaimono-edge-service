@@ -14,9 +14,9 @@ public class WebEndpoints {
     @Bean
     public RouterFunction<ServerResponse> routerFunction() {
         return RouterFunctions.route()
-                .GET("/catalog-fallback", request ->
+                .GET("/default-fallback", request ->
                         ServerResponse.ok().body(Mono.just(""), String.class))
-                .POST("/catalog-fallback", request ->
+                .POST("/default-fallback", request ->
                         ServerResponse.status(HttpStatus.SERVICE_UNAVAILABLE).build())
                 .build();
     }
