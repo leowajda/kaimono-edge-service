@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaimono-edge-service
+  labels:
+    app: kaimono-edge-service
+spec:
+  selector:
+    matchLabels:
+      app: kaimono-edge-service
+  template:
+    metadata:
+      labels:
+        app: kaimono-edge-service
+    spec:
+      containers:
+        - name: kaimono-edge-service
+          image: kaimono-edge-service
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "sh", "-c", "sleep 5" ]
+          ports:
+            - containerPort: 9000
+          env:
+            - name: CATALOG_SERVICE_URL
+              value: http://kaimono-catalog-service
+            - name: ORDER_SERVICE_URL
+              value: http://kaimono-order-service
+            - name: SPRING_DATA_REDIS_HOST
+              value: kaimono-redis
