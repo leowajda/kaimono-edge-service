@@ -24,9 +24,9 @@ spec:
           ports:
             - containerPort: 9000
           env:
-            - name: CATALOG_SERVICE_URL
+            - name: KAIMONO_CATALOG_SERVICE_URL
               value: http://kaimono-catalog-service
-            - name: ORDER_SERVICE_URL
+            - name: KAIMONO_ORDER_SERVICE_URL
               value: http://kaimono-order-service
             - name: SPRING_DATA_REDIS_HOST
               value: kaimono-redis

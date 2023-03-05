@@ -24,13 +24,13 @@ spring:
           max-life-time: 60s
       routes:
         - id: catalog-route
-          uri: ${CATALOG_SERVICE_URL:http://localhost:9001}/books
+          uri: ${KAIMONO_CATALOG_SERVICE_URL:http://localhost:9001}/books
           predicates:
             - Path=/books/**
         - id: order-route
-          uri: ${ORDER_SERVICE_URL:http://localhost:9002}/orders
+          uri: ${KAIMONO_ORDER_SERVICE_URL:http://localhost:9002}/orders
           predicates:
-            - Path=/orders/**10
+            - Path=/orders/**
       default-filters:
         - name: SaveSession
         - name: RequestRateLimiter
