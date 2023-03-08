@@ -13,6 +13,17 @@ spring:
       host: localhost
       port: 6379
       timeout: 1s
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: ${spring.application.name}
+            client-secret: kaimono-keycloak-secret
+            scope: openid,roles
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/kaimono
   cloud:
     gateway:
       httpclient:
@@ -32,6 +43,7 @@ spring:
           predicates:
             - Path=/orders/**
       default-filters:
+        - name: TokenRelay
         - name: SaveSession
         - name: RequestRateLimiter
           args:
